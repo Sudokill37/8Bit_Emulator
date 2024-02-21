@@ -9,7 +9,7 @@ ADDI    0010    (I type)
 AND     0011    (R type)
 ANDI    0100    (I type)
 NOT     0101    (R type)
-BEQA    0110    (J type)    (absolute addressing only)
+BEQA    0110    (J type)    (absolute addressing)
 BEQR    0111    (J type)    (relative addressing only)
 HLT     1000   
 LB      1001    (R type)

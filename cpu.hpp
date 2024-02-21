@@ -1,4 +1,4 @@
-#pragma once
+#pragma
 
 #define     R_W     0b0000
 #define     R_X     0b0001

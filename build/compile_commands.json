@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/sudokill/emul/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/emul.dir/main.cpp.o -c /home/sudokill/emul/main.cpp",
+  "file": "/home/sudokill/emul/main.cpp"
+}
+]
