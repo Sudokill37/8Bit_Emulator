@@ -1,0 +1,29 @@
+
+instructions
+
+each takes one cycle
+
+nop     0000
+and     0001
+or      0010
+xor     0011
+not     0100
+lsr     0101
+lsl     0110
+rot     0111
+
+add     1000
+inc     1001
+dec     1010
+
+    
+lb      1011
+sb      1100
+
+beq     1101
+bne     1110
+jmp     1111
+
+|4 bit opcode|      |1 bit mode|    |3 bit operand 1|       |8 bit operand 2 or immediate|
+
+    1111               1                 111                          11111111 (-32 => 31)
