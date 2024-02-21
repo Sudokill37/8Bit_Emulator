@@ -3,27 +3,51 @@ instructions
 
 each takes one cycle
 
-nop     0000
-and     0001
-or      0010
-xor     0011
-not     0100
-lsr     0101
-lsl     0110
-rot     0111
+NOP     0000
+ADD     0001    (R type)
+ADDI    0010    (I type)
+AND     0011    (R type)
+ANDI    0100    (I type)
+NOT     0101    (R type)
+BEQA    0110    (J type)    (absolute addressing only)
+BEQR    0111    (J type)    (relative addressing only)
+HLT     1000   
+LB      1001    (R type)
+SB      1010    (R type)
+LSR     1011    (R type)
+LSL     1100    (R type)
+INC     1101    (R type)
+DEC     1110    (R type)
 
-add     1000
-inc     1001
-dec     1010
 
-    
-lb      1011
-sb      1100
+I instructions
+|4 bit opcode|      |2 bit op1|    |2 bit op2|       |immediate|
 
-beq     1101
-bne     1110
-jmp     1111
+    1111                11              11            11111111 (-32 => 31)
 
-|4 bit opcode|      |1 bit mode|    |3 bit operand 1|       |8 bit operand 2 or immediate|
 
-    1111               1                 111                          11111111 (-32 => 31)
+R instructions   
+
+|4 bit opcode|      |4 bit op1|    |4 bit op2|       |4 bit op3|
+    1111               1111           1111              1111
+
+J instructions (offset not used by the BEQA instruction instead the address contained in the AR register is used)
+
+|4 bit opcode|       |12 bit offset|
+    1111              111111111111
+
+
+    2^16 bytes memory addressable 
+
+Registers (PC and AR registers are 16 bit registers, the upper 8 bits are accessed using the base index + 1)
+  |Reg|   |index|
+    W       0000    (I type compatible)
+    X       0001    (I type compatible)
+    Y       0010    (I type compatible)
+    Z       0011    (I type compatible)
+    PC      0100    (R type only)
+    PCU     0101    (PC upper 8 bits)
+    SP      0110    (R type only)
+    SR      0111    (R type only, Read only)
+    AR      1000    (R type only) 
+    ARU     1001    (AR upper 8 bits)
