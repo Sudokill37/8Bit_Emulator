@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sudokill/emul/build/CMakeFiles /home/sudokill/emul/build//CMakeFiles/progress.marks
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
+	cd /home/sudokill/emul/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/sudokill/emul/build/CMakeFiles /home/sudokill/emul/build/assembler//CMakeFiles/progress.marks
+	cd /home/sudokill/emul/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 assembler/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/sudokill/emul/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 clean
+	cd /home/sudokill/emul/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 assembler/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,92 +103,56 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /home/sudokill/emul/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 assembler/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /home/sudokill/emul/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 assembler/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/sudokill/emul/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named emul
+# Convenience name for target.
+assembler/CMakeFiles/assemble.dir/rule:
+	cd /home/sudokill/emul/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 assembler/CMakeFiles/assemble.dir/rule
+.PHONY : assembler/CMakeFiles/assemble.dir/rule
 
-# Build rule for target.
-emul: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 emul
-.PHONY : emul
-
-# fast build rule for target.
-emul/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/emul.dir/build.make CMakeFiles/emul.dir/build
-.PHONY : emul/fast
-
-#=============================================================================
-# Target rules for targets named assemble
-
-# Build rule for target.
-assemble: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 assemble
+# Convenience name for target.
+assemble: assembler/CMakeFiles/assemble.dir/rule
 .PHONY : assemble
 
 # fast build rule for target.
 assemble/fast:
-	$(MAKE) $(MAKESILENT) -f assembler/CMakeFiles/assemble.dir/build.make assembler/CMakeFiles/assemble.dir/build
+	cd /home/sudokill/emul/build && $(MAKE) $(MAKESILENT) -f assembler/CMakeFiles/assemble.dir/build.make assembler/CMakeFiles/assemble.dir/build
 .PHONY : assemble/fast
 
-cpu.o: cpu.cpp.o
-.PHONY : cpu.o
+assemble.o: assemble.cpp.o
+.PHONY : assemble.o
 
 # target to build an object file
-cpu.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/emul.dir/build.make CMakeFiles/emul.dir/cpu.cpp.o
-.PHONY : cpu.cpp.o
+assemble.cpp.o:
+	cd /home/sudokill/emul/build && $(MAKE) $(MAKESILENT) -f assembler/CMakeFiles/assemble.dir/build.make assembler/CMakeFiles/assemble.dir/assemble.cpp.o
+.PHONY : assemble.cpp.o
 
-cpu.i: cpu.cpp.i
-.PHONY : cpu.i
-
-# target to preprocess a source file
-cpu.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/emul.dir/build.make CMakeFiles/emul.dir/cpu.cpp.i
-.PHONY : cpu.cpp.i
-
-cpu.s: cpu.cpp.s
-.PHONY : cpu.s
-
-# target to generate assembly for a file
-cpu.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/emul.dir/build.make CMakeFiles/emul.dir/cpu.cpp.s
-.PHONY : cpu.cpp.s
-
-main.o: main.cpp.o
-.PHONY : main.o
-
-# target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/emul.dir/build.make CMakeFiles/emul.dir/main.cpp.o
-.PHONY : main.cpp.o
-
-main.i: main.cpp.i
-.PHONY : main.i
+assemble.i: assemble.cpp.i
+.PHONY : assemble.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/emul.dir/build.make CMakeFiles/emul.dir/main.cpp.i
-.PHONY : main.cpp.i
+assemble.cpp.i:
+	cd /home/sudokill/emul/build && $(MAKE) $(MAKESILENT) -f assembler/CMakeFiles/assemble.dir/build.make assembler/CMakeFiles/assemble.dir/assemble.cpp.i
+.PHONY : assemble.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+assemble.s: assemble.cpp.s
+.PHONY : assemble.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/emul.dir/build.make CMakeFiles/emul.dir/main.cpp.s
-.PHONY : main.cpp.s
+assemble.cpp.s:
+	cd /home/sudokill/emul/build && $(MAKE) $(MAKESILENT) -f assembler/CMakeFiles/assemble.dir/build.make assembler/CMakeFiles/assemble.dir/assemble.cpp.s
+.PHONY : assemble.cpp.s
 
 # Help Target
 help:
@@ -199,13 +163,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... assemble"
-	@echo "... emul"
-	@echo "... cpu.o"
-	@echo "... cpu.i"
-	@echo "... cpu.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... assemble.o"
+	@echo "... assemble.i"
+	@echo "... assemble.s"
 .PHONY : help
 
 
@@ -217,6 +177,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/sudokill/emul/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

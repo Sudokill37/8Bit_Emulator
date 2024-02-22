@@ -64,29 +64,46 @@ CMAKE_BINARY_DIR = /home/sudokill/emul/build
 
 # The main recursive "all" target.
 all: CMakeFiles/emul.dir/all
+all: assembler/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall:
+preinstall: assembler/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/emul.dir/clean
+clean: assembler/clean
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory assembler
+
+# Recursive "all" directory target.
+assembler/all: assembler/CMakeFiles/assemble.dir/all
+.PHONY : assembler/all
+
+# Recursive "preinstall" directory target.
+assembler/preinstall:
+.PHONY : assembler/preinstall
+
+# Recursive "clean" directory target.
+assembler/clean: assembler/CMakeFiles/assemble.dir/clean
+.PHONY : assembler/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/emul.dir
 
 # All Build rule for target.
-CMakeFiles/emul.dir/all:
+CMakeFiles/emul.dir/all: assembler/CMakeFiles/assemble.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/emul.dir/build.make CMakeFiles/emul.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/emul.dir/build.make CMakeFiles/emul.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sudokill/emul/build/CMakeFiles --progress-num=1,2,3 "Built target emul"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sudokill/emul/build/CMakeFiles --progress-num=3,4,5 "Built target emul"
 .PHONY : CMakeFiles/emul.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/emul.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sudokill/emul/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sudokill/emul/build/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/emul.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/sudokill/emul/build/CMakeFiles 0
 .PHONY : CMakeFiles/emul.dir/rule
@@ -99,6 +116,32 @@ emul: CMakeFiles/emul.dir/rule
 CMakeFiles/emul.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/emul.dir/build.make CMakeFiles/emul.dir/clean
 .PHONY : CMakeFiles/emul.dir/clean
+
+#=============================================================================
+# Target rules for target assembler/CMakeFiles/assemble.dir
+
+# All Build rule for target.
+assembler/CMakeFiles/assemble.dir/all:
+	$(MAKE) $(MAKESILENT) -f assembler/CMakeFiles/assemble.dir/build.make assembler/CMakeFiles/assemble.dir/depend
+	$(MAKE) $(MAKESILENT) -f assembler/CMakeFiles/assemble.dir/build.make assembler/CMakeFiles/assemble.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sudokill/emul/build/CMakeFiles --progress-num=1,2 "Built target assemble"
+.PHONY : assembler/CMakeFiles/assemble.dir/all
+
+# Build rule for subdir invocation for target.
+assembler/CMakeFiles/assemble.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sudokill/emul/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 assembler/CMakeFiles/assemble.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sudokill/emul/build/CMakeFiles 0
+.PHONY : assembler/CMakeFiles/assemble.dir/rule
+
+# Convenience name for target.
+assemble: assembler/CMakeFiles/assemble.dir/rule
+.PHONY : assemble
+
+# clean rule for target.
+assembler/CMakeFiles/assemble.dir/clean:
+	$(MAKE) $(MAKESILENT) -f assembler/CMakeFiles/assemble.dir/build.make assembler/CMakeFiles/assemble.dir/clean
+.PHONY : assembler/CMakeFiles/assemble.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "emul"
+			"path" : "assembler/assemble"
 		}
 	],
 	"backtrace" : 1,
@@ -14,7 +14,7 @@
 		],
 		"files" : 
 		[
-			"CMakeLists.txt"
+			"assembler/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -24,7 +24,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 5,
+				"line" : 3,
 				"parent" : 0
 			}
 		]
@@ -41,12 +41,11 @@
 			"language" : "CXX",
 			"sourceIndexes" : 
 			[
-				0,
-				1
+				0
 			]
 		}
 	],
-	"id" : "emul::@6890427a1f51a3e7e1df",
+	"id" : "assemble::@6d3aeda357a9730661e3",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -62,12 +61,12 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "emul",
-	"nameOnDisk" : "emul",
+	"name" : "assemble",
+	"nameOnDisk" : "assemble",
 	"paths" : 
 	{
-		"build" : ".",
-		"source" : "."
+		"build" : "assembler",
+		"source" : "assembler"
 	},
 	"sourceGroups" : 
 	[
@@ -75,8 +74,7 @@
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				0,
-				1
+				0
 			]
 		}
 	],
@@ -85,13 +83,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "main.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "cpu.cpp",
+			"path" : "assembler/assemble.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

@@ -6,6 +6,10 @@
 			[
 				{
 					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
 					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
@@ -13,6 +17,21 @@
 					},
 					"projectIndex" : 0,
 					"source" : ".",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "assembler",
+					"jsonFile" : "directory-assembler-Debug-118871c70df6738ffc80.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "assembler",
 					"targetIndexes" : 
 					[
 						0
@@ -25,21 +44,30 @@
 				{
 					"directoryIndexes" : 
 					[
-						0
+						0,
+						1
 					],
 					"name" : "emul",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
 			"targets" : 
 			[
 				{
+					"directoryIndex" : 1,
+					"id" : "assemble::@6d3aeda357a9730661e3",
+					"jsonFile" : "target-assemble-Debug-b05d8f7b973d9c0b005a.json",
+					"name" : "assemble",
+					"projectIndex" : 0
+				},
+				{
 					"directoryIndex" : 0,
 					"id" : "emul::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-emul-Debug-a98ed51780577ba64b67.json",
+					"jsonFile" : "target-emul-Debug-0be336265e5eb580833e.json",
 					"name" : "emul",
 					"projectIndex" : 0
 				}

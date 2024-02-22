@@ -8,5 +8,10 @@
   "directory": "/home/sudokill/emul/build",
   "command": "/usr/bin/g++   -g -o CMakeFiles/emul.dir/cpu.cpp.o -c /home/sudokill/emul/cpu.cpp",
   "file": "/home/sudokill/emul/cpu.cpp"
+},
+{
+  "directory": "/home/sudokill/emul/build/assembler",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/assemble.dir/assemble.cpp.o -c /home/sudokill/emul/assembler/assemble.cpp",
+  "file": "/home/sudokill/emul/assembler/assemble.cpp"
 }
 ]

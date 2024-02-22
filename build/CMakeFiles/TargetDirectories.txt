@@ -1,3 +1,6 @@
 /home/sudokill/emul/build/CMakeFiles/emul.dir
 /home/sudokill/emul/build/CMakeFiles/edit_cache.dir
 /home/sudokill/emul/build/CMakeFiles/rebuild_cache.dir
+/home/sudokill/emul/build/assembler/CMakeFiles/assemble.dir
+/home/sudokill/emul/build/assembler/CMakeFiles/edit_cache.dir
+/home/sudokill/emul/build/assembler/CMakeFiles/rebuild_cache.dir
