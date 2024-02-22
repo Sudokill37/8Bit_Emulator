@@ -44,10 +44,10 @@ void initializeCPU(registers& cpuReg, memory& cpuMem) {
     }
 
     cpuReg.reg[0b0000] = 0x00;
-    cpuReg.reg[0b0001] = 0b00000001;
+    cpuReg.reg[0b0001] = 0b00000010;
     cpuReg.reg[0b0010] = 0b01111111;
 
-    cpuMem.ins[0]   =   0b0001000000010010;
+    cpuMem.ins[0]   =   0b0010000101111111;
     cpuMem.ins[1]   =   0x8000;
     cpuMem.ins[2]   =   0b0010101100000111;
     cpuMem.ins[3]   =   0b0011101100000111;
@@ -87,14 +87,10 @@ void execute(registers& cpuReg, memory& cpuMem){
         std::cout << "NOP" << std::endl;
         break;
     case 0b0001:    //ADD
-
         ADD(ins, cpuReg, cpuMem);
-        
         break;
-    
     case 0b0010:    //ADDI
-        cpuReg.reg[R_SR]  = 0;
-        std::cout << "ADDI" << std::endl;
+        ADDI(ins, cpuReg, cpuMem);
         break;
     case 0b0011:    //AND
         cpuReg.reg[R_SR]  = 0;
