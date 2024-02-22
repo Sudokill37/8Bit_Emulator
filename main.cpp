@@ -4,14 +4,6 @@
 
 int cycles = 0;
 
-struct registers{
-    uint8_t reg[0b1010]; // for clarity use cpu.hpp macros when accessing these
-};
-struct memory{
-    uint8_t stack[265]; //stack, nuff said.
-    uint16_t ins[2048];  //program data goes here
-    uint8_t data[61184]; //peripherals will be in here.
-};
 
 void initializeCPU(registers& cpuReg, memory& cpuMem);
 uint16_t fetchIns(registers& cpuReg, memory& cpuMem);
@@ -22,7 +14,10 @@ int main(){
     registers cpuReg;
 
     initializeCPU(cpuReg, cpuMem);
-    for(int i = 0; i < 16; i++){
+    for(int i = 0; i < 200; i++){
+            if(HALT_FLAG == 1){ // check if program halted
+                break;
+            }
             execute(cpuReg, cpuMem);
     }
     
@@ -48,15 +43,19 @@ void initializeCPU(registers& cpuReg, memory& cpuMem) {
         cpuMem.data[i] = 0;
     }
 
-    cpuMem.ins[0]   =   0b0000101100000111;
-    cpuMem.ins[1]   =   0b0001101100000111;
+    cpuReg.reg[0b0000] = 0x00;
+    cpuReg.reg[0b0001] = 0b00000001;
+    cpuReg.reg[0b0010] = 0b01111111;
+
+    cpuMem.ins[0]   =   0b0001000000010010;
+    cpuMem.ins[1]   =   0x8000;
     cpuMem.ins[2]   =   0b0010101100000111;
     cpuMem.ins[3]   =   0b0011101100000111;
     cpuMem.ins[4]   =   0b0100101100000111;
     cpuMem.ins[5]   =   0b0101101100000111;
     cpuMem.ins[6]   =   0b0110101100000111;
     cpuMem.ins[7]   =   0b0111101100000111;
-    cpuMem.ins[8]   =   0b1000101100000111;
+    cpuMem.ins[8]   =   0b1010101100000111;
     cpuMem.ins[9]   =   0b1001101100000111;
     cpuMem.ins[10]  =   0b1010101100000111;
     cpuMem.ins[11]  =   0b1011101100000111;
@@ -64,7 +63,8 @@ void initializeCPU(registers& cpuReg, memory& cpuMem) {
     cpuMem.ins[13]  =   0b1101101100000111;
     cpuMem.ins[14]  =   0b1110101100000111;
     cpuMem.ins[15]  =   0b1111101100000111;
-    
+    cpuMem.ins[64]  =   0x8000;
+     
 
 
 }
@@ -87,45 +87,60 @@ void execute(registers& cpuReg, memory& cpuMem){
         std::cout << "NOP" << std::endl;
         break;
     case 0b0001:    //ADD
-        std::cout << "ADD" << std::endl;
+
+        ADD(ins, cpuReg, cpuMem);
+        
         break;
+    
     case 0b0010:    //ADDI
+        cpuReg.reg[R_SR]  = 0;
         std::cout << "ADDI" << std::endl;
         break;
     case 0b0011:    //AND
+        cpuReg.reg[R_SR]  = 0;
         std::cout << "AND" << std::endl;
         break;
     case 0b0100:    //ANDI
+        cpuReg.reg[R_SR]  = 0;
         std::cout << "ANDI" << std::endl;
         break;
     case 0b0101:    //NOT
+        cpuReg.reg[R_SR]  = 0;
         std::cout << "NOT" << std::endl;
         break;
     case 0b0110:    //BEQA
+
         std::cout << "BEQA" << std::endl;
         break;
     case 0b0111:    //BEQR
+
         std::cout << "BEQR" << std::endl;
         break;
     case 0b1000:    //HLT
         std::cout << "HLT" << std::endl;
+        cpuReg.reg[R_SR] |= 0b00001000;
         break;
     case 0b1001:    //LB
+        cpuReg.reg[R_SR]  = 0;
         std::cout << "LB" << std::endl;
         break;
     case 0b1010:    //SB
         std::cout << "SB" << std::endl;
         break;
     case 0b1011:    //LSR
+        cpuReg.reg[R_SR]  = 0;
         std::cout << "LSR" << std::endl;
         break;
     case 0b1100:    //LSL
+        cpuReg.reg[R_SR]  = 0;
         std::cout << "LSL" << std::endl;
         break;
     case 0b1101:    //INC
+        cpuReg.reg[R_SR]  = 0;
         std::cout << "INC" << std::endl;
         break;
     case 0b1110:    //DEC
+        cpuReg.reg[R_SR]  = 0;
         std::cout << "DEC" << std::endl;
         break;
     case 0b1111:    //not used (treated as NOP)

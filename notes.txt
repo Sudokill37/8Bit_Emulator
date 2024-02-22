@@ -51,3 +51,12 @@ Registers (PC and AR registers are 16 bit registers, the upper 8 bits are access
     SR      0111    (R type only, Read only)
     AR      1000    (R type only) 
     ARU     1001    (AR upper 8 bits)
+
+
+    status register
+
+    8bits (2 flags not used)
+    Z S V P H X X X
+    1 1 1 1 1 1 1 1
+
+(flags are set based on the output of an AL instruction)

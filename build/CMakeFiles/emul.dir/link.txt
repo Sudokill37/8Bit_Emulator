@@ -1,1 +1,1 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/emul.dir/main.cpp.o -o emul 
+/usr/bin/g++ -g -rdynamic CMakeFiles/emul.dir/main.cpp.o CMakeFiles/emul.dir/cpu.cpp.o -o emul 

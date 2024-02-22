@@ -129,6 +129,30 @@ emul/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/emul.dir/build.make CMakeFiles/emul.dir/build
 .PHONY : emul/fast
 
+cpu.o: cpu.cpp.o
+.PHONY : cpu.o
+
+# target to build an object file
+cpu.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emul.dir/build.make CMakeFiles/emul.dir/cpu.cpp.o
+.PHONY : cpu.cpp.o
+
+cpu.i: cpu.cpp.i
+.PHONY : cpu.i
+
+# target to preprocess a source file
+cpu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emul.dir/build.make CMakeFiles/emul.dir/cpu.cpp.i
+.PHONY : cpu.cpp.i
+
+cpu.s: cpu.cpp.s
+.PHONY : cpu.s
+
+# target to generate assembly for a file
+cpu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/emul.dir/build.make CMakeFiles/emul.dir/cpu.cpp.s
+.PHONY : cpu.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -162,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... emul"
+	@echo "... cpu.o"
+	@echo "... cpu.i"
+	@echo "... cpu.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
