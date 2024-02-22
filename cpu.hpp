@@ -18,6 +18,7 @@
 #define     ZERO_FLAG       ((cpuReg.reg[R_SR] >> 0x07) & 0x01)
 
 
+
 struct registers{
     uint8_t reg[0b1010]; // for clarity use cpu.hpp macros when accessing these
 };
@@ -26,6 +27,11 @@ struct memory{
     uint16_t ins[2048];  //program data goes here
     uint8_t data[61184]; //peripherals will be in here.
 };
+
+uint16_t fetchIns(registers& cpuReg, memory& cpuMem);
+void initializeCPU(registers& cpuReg, memory& cpuMem);
+void execute(registers& cpuReg, memory& cpuMem);
+
 
 
 void ADD(uint16_t ins, registers& cpuReg, memory& cpuMem);
@@ -42,3 +48,5 @@ void LSR(uint16_t ins, registers& cpuReg, memory& cpuMem);
 void LSL(uint16_t ins, registers& cpuReg, memory& cpuMem);
 void INC(uint16_t ins, registers& cpuReg, memory& cpuMem);
 void DEC(uint16_t ins, registers& cpuReg, memory& cpuMem);
+
+
