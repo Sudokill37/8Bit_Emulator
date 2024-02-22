@@ -129,16 +129,7 @@ void ADD(uint16_t ins, registers& cpuReg, memory& cpuMem){
         cpuReg.reg[destReg] = result;
 
         std::cout << "ADD" << std::endl;
-        std::cout << "status: "
-        <<(int)(cpuReg.reg[R_SR]>>7) 
-        <<(int)((cpuReg.reg[R_SR]>>6)&1)
-        <<(int)((cpuReg.reg[R_SR]>>5)&1)
-        <<(int)((cpuReg.reg[R_SR]>>4)&1)
-        <<(int)((cpuReg.reg[R_SR]>>3)&1)
-        <<(int)((cpuReg.reg[R_SR]>>2)&1)
-        <<(int)((cpuReg.reg[R_SR]>>1)&1)
-        <<(int)((cpuReg.reg[R_SR]>>0)&1)
-        << std::endl;
+        std::cout << "status: " << std::bitset<8>(cpuReg.reg[R_SR])<<" ZSVPHXXX" << std::endl;
         std::cout << "Val1: " << (int)val1 <<std::endl;
         std::cout << "Val2: " << (int)val2 <<std::endl;
         std::cout << "Result: " << (int)result <<std::endl;
@@ -163,17 +154,7 @@ void ADDI(uint16_t ins, registers& cpuReg, memory& cpuMem){
         cpuReg.reg[destReg] = result;
 
         std::cout << "ADDI" << std::endl;
-        std::cout << "status: "
-        <<(int)(cpuReg.reg[R_SR]>>7) 
-        <<(int)((cpuReg.reg[R_SR]>>6)&1)
-        <<(int)((cpuReg.reg[R_SR]>>5)&1)
-        <<(int)((cpuReg.reg[R_SR]>>4)&1)
-        <<(int)((cpuReg.reg[R_SR]>>3)&1)
-        <<(int)((cpuReg.reg[R_SR]>>2)&1)
-        <<(int)((cpuReg.reg[R_SR]>>1)&1)
-        <<(int)((cpuReg.reg[R_SR]>>0)&1)
-        <<" ZSVPHXXX"
-        << std::endl;
+        std::cout << "status: " << std::bitset<8>(cpuReg.reg[R_SR])<<" ZSVPHXXX" << std::endl;
         std::cout << "Val1: " << (int)val1 <<std::endl;
         std::cout << "Val2: " << (int)val2 <<std::endl;
         std::cout << "Result: " << (int)result <<std::endl;
@@ -201,17 +182,7 @@ void AND(uint16_t ins, registers& cpuReg, memory& cpuMem){
         cpuReg.reg[destReg] = result;
 
         std::cout << "AND" << std::endl;
-        std::cout << "status: "
-        <<(int)(cpuReg.reg[R_SR]>>7) 
-        <<(int)((cpuReg.reg[R_SR]>>6)&1)
-        <<(int)((cpuReg.reg[R_SR]>>5)&1)
-        <<(int)((cpuReg.reg[R_SR]>>4)&1)
-        <<(int)((cpuReg.reg[R_SR]>>3)&1)
-        <<(int)((cpuReg.reg[R_SR]>>2)&1)
-        <<(int)((cpuReg.reg[R_SR]>>1)&1)
-        <<(int)((cpuReg.reg[R_SR]>>0)&1)
-        <<" ZSVPHXXX"
-        << std::endl;
+        std::cout << "status: " << std::bitset<8>(cpuReg.reg[R_SR])<<" ZSVPHXXX" << std::endl;
         std::cout << "Val1: " << (int)val1 <<std::endl;
         std::cout << "Val2: " << (int)val2 <<std::endl;
         std::cout << "Result: " << (int)result <<std::endl;
@@ -237,17 +208,7 @@ void ANDI(uint16_t ins, registers& cpuReg, memory& cpuMem){
         cpuReg.reg[destReg] = result;
 
         std::cout << "ANDI" << std::endl;
-        std::cout << "status: "
-        <<(int)(cpuReg.reg[R_SR]>>7) 
-        <<(int)((cpuReg.reg[R_SR]>>6)&1)
-        <<(int)((cpuReg.reg[R_SR]>>5)&1)
-        <<(int)((cpuReg.reg[R_SR]>>4)&1)
-        <<(int)((cpuReg.reg[R_SR]>>3)&1)
-        <<(int)((cpuReg.reg[R_SR]>>2)&1)
-        <<(int)((cpuReg.reg[R_SR]>>1)&1)
-        <<(int)((cpuReg.reg[R_SR]>>0)&1)
-        <<" ZSVPHXXX"
-        << std::endl;
+        std::cout << "status: " << std::bitset<8>(cpuReg.reg[R_SR])<<" ZSVPHXXX" << std::endl;
         std::cout << "Val1: " << (int)val1 <<std::endl;
         std::cout << "Val2: " << (int)val2 <<std::endl;
         std::cout << "Result: " << (int)result <<std::endl;
@@ -297,7 +258,7 @@ void HLT(uint16_t ins, registers& cpuReg, memory& cpuMem){
 void LB(uint16_t ins, registers& cpuReg, memory& cpuMem);
 void SB(uint16_t ins, registers& cpuReg, memory& cpuMem);
 void LSR(uint16_t ins, registers& cpuReg, memory& cpuMem){
-        
+
 }
 void LSL(uint16_t ins, registers& cpuReg, memory& cpuMem);
 void INC(uint16_t ins, registers& cpuReg, memory& cpuMem);
