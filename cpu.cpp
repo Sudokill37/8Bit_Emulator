@@ -3,39 +3,59 @@
 #include <bitset>
 #include "cpu.hpp"
 
-int cycles;
+int cycles = 0;
+
+memory::memory() : stack(mem), ins(mem+256), data(mem+4352){
+
+    for (int i = 0; i < 256; ++i) {
+        stack[i] = 0;
+    }
+    for (int i = 0; i < 4096; ++i) {
+        ins[i] = 0;
+    }
+    for (int i = 0; i < 61184; ++i) {
+        data[i] = 0;
+    }
+
+}
+registers::registers(){
+    for (int i = 0; i < 10; i++) {
+        reg[i] = 0;
+    }
+}
 
 uint16_t fetchIns(registers& cpuReg, memory& cpuMem){
     
-    uint16_t addr = cpuReg.reg[R_PC] | ((uint16_t)cpuReg.reg[R_PCU] << 8);
-    uint16_t ins = cpuMem.ins[addr];
-    addr++; 
+    uint16_t addr = (cpuReg.reg[R_PC] | ((uint16_t)cpuReg.reg[R_PCU] << 8))*2;
+    uint16_t ins = cpuMem.ins[addr] | (cpuMem.ins[addr+1] << 8);
+    addr = (addr + 2)/2; 
     cpuReg.reg[R_PC] = (uint8_t)(addr & 0xff);
     cpuReg.reg[R_PCU] = (uint8_t)((addr>>8) & 0xff);
     return ins;
 
 }
+void setIns(uint16_t addr, uint16_t ins, memory& cpuMem){
+    uint8_t Lins = ins;
+    uint8_t Uins = ins >> 8;
+    cpuMem.ins[2*addr] = Lins;
+    cpuMem.ins[2*addr+1] = Uins;
+}
 
-void initializeCPU(registers& cpuReg, memory& cpuMem) {
-    
-    cycles = 0;
+void setIns(uint16_t addr, uint16_t *insAr, int16_t size, memory &cpuMem)
+{
+    uint8_t Lins;
+    uint8_t Uins;
 
-    // Initialize CPU registers
-    for (int i = 0; i < 10; i++) {
-        cpuReg.reg[i] = 0;
-    }
-    
-    // Initialize CPU memory
-    for (int i = 0; i < 265; ++i) {
-        cpuMem.stack[i] = 0;
-    }
-    for (int i = 0; i < 2048; ++i) {
-        cpuMem.ins[i] = 0;
-    }
-    for (int i = 0; i < 61184; ++i) {
-        cpuMem.data[i] = 0;
+    if(size*2+addr > 4096){
+        std::cerr << "Not Enough Program Memory!"<<std::endl;
     }
 
+    for(uint16_t i; i < size; i++){
+        Lins = insAr[i];
+        Uins = insAr[i] >> 8;
+        cpuMem.ins[addr+2*i] = Lins;
+        cpuMem.ins[addr+2*i+1] = Uins;
+    }
 }
 
 void execute(registers& cpuReg, memory& cpuMem){

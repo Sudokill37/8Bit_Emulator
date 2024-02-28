@@ -20,17 +20,21 @@
 
 
 struct registers{
-    uint8_t reg[0b1010]; // for clarity use cpu.hpp macros when accessing these
+    uint8_t reg[0b1010];// for clarity use cpu.hpp macros when accessing these
+    registers(); 
 };
 struct memory{
-    uint8_t stack[265]; //stack, nuff said.
-    uint16_t ins[2048];  //program data goes here
-    uint8_t data[61184]; //peripherals will be in here.
+    uint8_t mem[65536];
+    uint8_t* stack; //stack, nuff said.
+    uint8_t* ins;  //program data goes here
+    uint8_t* data;//[61184]; //peripherals will be in here.
+    memory();
 };
 
 uint16_t fetchIns(registers& cpuReg, memory& cpuMem);
-void initializeCPU(registers& cpuReg, memory& cpuMem);
 void execute(registers& cpuReg, memory& cpuMem);
+void setIns(uint16_t addr, uint16_t ins, memory& cpuMem);
+void setIns(uint16_t addr, uint16_t* insAr, int16_t size, memory& cpuMem);
 
 
 

@@ -17,18 +17,19 @@ The Simple 8-Bit CPU supports a simple and compact instruction set designed to p
 - **NOP**: No operation
 - **ADD**: Add two operands
 - **ADDI**: Add immediate value to a register
+- **SUB**: Subtract one operand from another
+- **SUBI**: Subtract imeediate value from a register
 - **AND**: Perform bitwise AND operation
 - **ANDI**: Perform bitwise AND operation with immediate value
 - **NOT**: Perform bitwise NOT operation
-- **BEQA**: Branch to an absolute address if equal
-- **BEQR**: Branch to a relative address if equal
-- **HLT**: Halt execution
-- **LB**: Load byte from memory
-- **SB**: Store byte to memory
 - **LSR**: Logical shift right
 - **LSL**: Logical shift left
-- **INC**: Increment a register
-- **DEC**: Decrement a register
+- **BRF**: Branch if selected flag is set
+- **BNF**: Branch if selected flag is not set
+- **JMP**: Unconditional Jump
+- **LB**: Load byte from memory
+- **SB**: Store byte to memory
+- **RST**: Reset Execution
 
 ## Memory Organization
 The Simple 8-Bit CPU features a 16-bit addressable memory, allowing access to 64KB of memory space. Memory is divided into three main regions, each serving different purposes:
@@ -51,7 +52,7 @@ The Simple 8-Bit CPU includes a set of registers for storing temporary data and 
 - **PC**: Program counter register (R-type only).
 - **PCU**: Program counter upper register (R-type only).
 - **SP**: Stack pointer register (R-type only).
-- **SR**: Status register (R-type only). Flags: Zero, Sign, Overflow, Parity, Halt. (Format: ZSVPHXXX)
+- **SR**: Status register (R-type only). Flags: Zero, Sign, Overflow, Parity, Reset. (Format: ZSVPRXXX)
 - **AR**: Address register (R-type only).
 - **ARU**: Address register upper register (R-type only).
 
