@@ -1,4 +1,4 @@
-# Install script for directory: /home/sudokill/emul
+# Install script for directory: /home/sudokill/8Bit_Emulator
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,7 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/sudokill/emul/build/assembler/cmake_install.cmake")
+  include("/home/sudokill/8Bit_Emulator/build/assembler/cmake_install.cmake")
 
 endif()
 
@@ -56,5 +56,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/sudokill/emul/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/sudokill/8Bit_Emulator/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

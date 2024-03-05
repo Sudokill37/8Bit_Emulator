@@ -77,8 +77,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/sudokill/emul/build",
-		"source" : "/home/sudokill/emul"
+		"build" : "/home/sudokill/8Bit_Emulator/build",
+		"source" : "/home/sudokill/8Bit_Emulator"
 	},
 	"version" : 
 	{

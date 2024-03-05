@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/sudokill/emul/assembler/assemble.cpp" "assembler/CMakeFiles/assemble.dir/assemble.cpp.o" "gcc" "assembler/CMakeFiles/assemble.dir/assemble.cpp.o.d"
+  "/home/sudokill/8Bit_Emulator/assembler/assemble.cpp" "assembler/CMakeFiles/assemble.dir/assemble.cpp.o" "gcc" "assembler/CMakeFiles/assemble.dir/assemble.cpp.o.d"
   )
 
 # Targets to which this target links.

@@ -40,17 +40,19 @@ void setIns(uint16_t addr, uint16_t* insAr, int16_t size, memory& cpuMem);
 
 void ADD(uint16_t ins, registers& cpuReg, memory& cpuMem);
 void ADDI(uint16_t ins, registers& cpuReg, memory& cpuMem);
+void SUB(uint16_t ins, registers& cpuReg, memory& cpuMem);
+void SUBI(uint16_t ins, registers& cpuReg, memory& cpuMem);
 void AND(uint16_t ins, registers& cpuReg, memory& cpuMem);
 void ANDI(uint16_t ins, registers& cpuReg, memory& cpuMem);
 void NOT(uint16_t ins, registers& cpuReg, memory& cpuMem);
-void BEQA(uint16_t ins, registers& cpuReg, memory& cpuMem);
-void BEQR(uint16_t ins, registers& cpuReg, memory& cpuMem);
-void HLT(uint16_t ins, registers& cpuReg, memory& cpuMem);
+void LSL(uint16_t ins, registers& cpuReg, memory& cpuMem);
+void LSR(uint16_t ins, registers& cpuReg, memory& cpuMem);
+void BRF(uint16_t ins, registers& cpuReg, memory& cpuMem);
+void BNF(uint16_t ins, registers& cpuReg, memory& cpuMem);
+void JMP(uint16_t ins, registers& cpuReg, memory& cpuMem);
 void LB(uint16_t ins, registers& cpuReg, memory& cpuMem);
 void SB(uint16_t ins, registers& cpuReg, memory& cpuMem);
-void LSR(uint16_t ins, registers& cpuReg, memory& cpuMem);
-void LSL(uint16_t ins, registers& cpuReg, memory& cpuMem);
-void INC(uint16_t ins, registers& cpuReg, memory& cpuMem);
-void DEC(uint16_t ins, registers& cpuReg, memory& cpuMem);
+void RST(uint16_t ins, registers& cpuReg, memory& cpuMem);
+
 
 

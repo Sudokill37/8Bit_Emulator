@@ -1,6 +1,6 @@
 assembler/CMakeFiles/assemble.dir/assemble.cpp.o: \
- /home/sudokill/emul/assembler/assemble.cpp /usr/include/stdc-predef.h \
- /usr/include/c++/11/iostream \
+ /home/sudokill/8Bit_Emulator/assembler/assemble.cpp \
+ /usr/include/stdc-predef.h /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \

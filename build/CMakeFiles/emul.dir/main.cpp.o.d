@@ -1,4 +1,4 @@
-CMakeFiles/emul.dir/main.cpp.o: /home/sudokill/emul/main.cpp \
+CMakeFiles/emul.dir/main.cpp.o: /home/sudokill/8Bit_Emulator/main.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/11/cstdint \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -145,4 +145,5 @@ CMakeFiles/emul.dir/main.cpp.o: /home/sudokill/emul/main.cpp \
  /usr/include/c++/11/bits/locale_facets.tcc \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
- /usr/include/c++/11/bits/istream.tcc /home/sudokill/emul/cpu.hpp
+ /usr/include/c++/11/bits/istream.tcc \
+ /home/sudokill/8Bit_Emulator/cpu.hpp

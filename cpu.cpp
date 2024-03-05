@@ -73,51 +73,46 @@ void execute(registers& cpuReg, memory& cpuMem){
     case 0b0010:    //ADDI
         ADDI(ins, cpuReg, cpuMem);
         break;
-    case 0b0011:    //AND
+    case 0b0011:    //SUB
+        SUB(ins, cpuReg, cpuMem);
+        break;
+    case 0b0100:    //SUBI
+        SUBI(ins, cpuReg, cpuMem);
+        break;
+    case 0b0101:    //AND
         AND(ins, cpuReg, cpuMem);
         break;
-    case 0b0100:    //ANDI
+    case 0b0110:    //ANDI
         ANDI(ins, cpuReg, cpuMem);
-        break;
-    case 0b0101:    //NOT
-        NOT(ins, cpuReg, cpuMem);
-        break;
-    case 0b0110:    //BEQA
-
         std::cout << "BEQA" << std::endl;
         break;
-    case 0b0111:    //BEQR
-
+    case 0b0111:    //NOT
+        NOT(ins, cpuReg, cpuMem);
         std::cout << "BEQR" << std::endl;
         break;
-    case 0b1000:    //HLT
-        HLT(ins, cpuReg, cpuMem);
+    case 0b1000:    //LSL
+        LSL(ins, cpuReg, cpuMem);
         break;
-    case 0b1001:    //LB
-        cpuReg.reg[R_SR]  = 0;
-        std::cout << "LB" << std::endl;
+    case 0b1001:    //LSR
+        LSR(ins, cpuReg, cpuMem);
         break;
-    case 0b1010:    //SB
-        std::cout << "SB" << std::endl;
+    case 0b1010:    //BRF
+        BRF(ins, cpuReg, cpuMem);
         break;
-    case 0b1011:    //LSR
-        cpuReg.reg[R_SR]  = 0;
-        std::cout << "LSR" << std::endl;
+    case 0b1011:    //BNF
+        BNF(ins, cpuReg, cpuMem);
         break;
-    case 0b1100:    //LSL
-        cpuReg.reg[R_SR]  = 0;
-        std::cout << "LSL" << std::endl;
+    case 0b1100:    //JMP
+        JMP(ins, cpuReg, cpuMem);
         break;
-    case 0b1101:    //INC
-        cpuReg.reg[R_SR]  = 0;
-        std::cout << "INC" << std::endl;
+    case 0b1101:    //LB
+        LB(ins, cpuReg, cpuMem);
         break;
-    case 0b1110:    //DEC
-        cpuReg.reg[R_SR]  = 0;
-        std::cout << "DEC" << std::endl;
+    case 0b1110:    //SB
+        SB(ins, cpuReg, cpuMem);
         break;
-    case 0b1111:    //not used (treated as NOP)
-        std::cout << "extra" << std::endl;
+    case 0b1111:    //RST
+        RST(ins, cpuReg, cpuMem);
         break;
     default:
         std::cout << "invalid opcode" << std::endl;
@@ -425,7 +420,7 @@ void SB(uint16_t ins, registers& cpuReg, memory& cpuMem){
 }
 
 void RST(uint16_t ins, registers& cpuReg, memory& cpuMem){
-
+    cpuReg.reg[R_SR] |= 4;
 }
 
 

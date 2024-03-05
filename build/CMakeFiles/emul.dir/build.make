@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sudokill/emul
+CMAKE_SOURCE_DIR = /home/sudokill/8Bit_Emulator
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sudokill/emul/build
+CMAKE_BINARY_DIR = /home/sudokill/8Bit_Emulator/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/emul.dir/depend.make
@@ -72,30 +72,30 @@ include CMakeFiles/emul.dir/flags.make
 CMakeFiles/emul.dir/main.cpp.o: CMakeFiles/emul.dir/flags.make
 CMakeFiles/emul.dir/main.cpp.o: ../main.cpp
 CMakeFiles/emul.dir/main.cpp.o: CMakeFiles/emul.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sudokill/emul/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/emul.dir/main.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/emul.dir/main.cpp.o -MF CMakeFiles/emul.dir/main.cpp.o.d -o CMakeFiles/emul.dir/main.cpp.o -c /home/sudokill/emul/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sudokill/8Bit_Emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/emul.dir/main.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/emul.dir/main.cpp.o -MF CMakeFiles/emul.dir/main.cpp.o.d -o CMakeFiles/emul.dir/main.cpp.o -c /home/sudokill/8Bit_Emulator/main.cpp
 
 CMakeFiles/emul.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/emul.dir/main.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sudokill/emul/main.cpp > CMakeFiles/emul.dir/main.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sudokill/8Bit_Emulator/main.cpp > CMakeFiles/emul.dir/main.cpp.i
 
 CMakeFiles/emul.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/emul.dir/main.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sudokill/emul/main.cpp -o CMakeFiles/emul.dir/main.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sudokill/8Bit_Emulator/main.cpp -o CMakeFiles/emul.dir/main.cpp.s
 
 CMakeFiles/emul.dir/cpu.cpp.o: CMakeFiles/emul.dir/flags.make
 CMakeFiles/emul.dir/cpu.cpp.o: ../cpu.cpp
 CMakeFiles/emul.dir/cpu.cpp.o: CMakeFiles/emul.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sudokill/emul/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/emul.dir/cpu.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/emul.dir/cpu.cpp.o -MF CMakeFiles/emul.dir/cpu.cpp.o.d -o CMakeFiles/emul.dir/cpu.cpp.o -c /home/sudokill/emul/cpu.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sudokill/8Bit_Emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/emul.dir/cpu.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/emul.dir/cpu.cpp.o -MF CMakeFiles/emul.dir/cpu.cpp.o.d -o CMakeFiles/emul.dir/cpu.cpp.o -c /home/sudokill/8Bit_Emulator/cpu.cpp
 
 CMakeFiles/emul.dir/cpu.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/emul.dir/cpu.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sudokill/emul/cpu.cpp > CMakeFiles/emul.dir/cpu.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sudokill/8Bit_Emulator/cpu.cpp > CMakeFiles/emul.dir/cpu.cpp.i
 
 CMakeFiles/emul.dir/cpu.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/emul.dir/cpu.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sudokill/emul/cpu.cpp -o CMakeFiles/emul.dir/cpu.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sudokill/8Bit_Emulator/cpu.cpp -o CMakeFiles/emul.dir/cpu.cpp.s
 
 # Object files for target emul
 emul_OBJECTS = \
@@ -109,7 +109,7 @@ emul: CMakeFiles/emul.dir/main.cpp.o
 emul: CMakeFiles/emul.dir/cpu.cpp.o
 emul: CMakeFiles/emul.dir/build.make
 emul: CMakeFiles/emul.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sudokill/emul/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable emul"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sudokill/8Bit_Emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable emul"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/emul.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -121,6 +121,6 @@ CMakeFiles/emul.dir/clean:
 .PHONY : CMakeFiles/emul.dir/clean
 
 CMakeFiles/emul.dir/depend:
-	cd /home/sudokill/emul/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sudokill/emul /home/sudokill/emul /home/sudokill/emul/build /home/sudokill/emul/build /home/sudokill/emul/build/CMakeFiles/emul.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sudokill/8Bit_Emulator/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sudokill/8Bit_Emulator /home/sudokill/8Bit_Emulator /home/sudokill/8Bit_Emulator/build /home/sudokill/8Bit_Emulator/build /home/sudokill/8Bit_Emulator/build/CMakeFiles/emul.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/emul.dir/depend
 

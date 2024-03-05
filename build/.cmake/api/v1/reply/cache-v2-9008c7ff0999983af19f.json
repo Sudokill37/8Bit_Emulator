@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/sudokill/emul/build"
+			"value" : "/home/sudokill/8Bit_Emulator/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -155,10 +155,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "CXX compiler"
 				}
 			],
-			"type" : "FILEPATH",
+			"type" : "STRING",
 			"value" : "/usr/bin/g++"
 		},
 		{
@@ -283,10 +283,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "C compiler"
 				}
 			],
-			"type" : "FILEPATH",
+			"type" : "STRING",
 			"value" : "/usr/bin/gcc"
 		},
 		{
@@ -591,7 +591,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/sudokill/emul"
+			"value" : "/home/sudokill/8Bit_Emulator"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1127,7 +1127,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/sudokill/emul/build"
+			"value" : "/home/sudokill/8Bit_Emulator/build"
 		},
 		{
 			"name" : "emul_IS_TOP_LEVEL",
@@ -1151,7 +1151,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/sudokill/emul"
+			"value" : "/home/sudokill/8Bit_Emulator"
 		}
 	],
 	"kind" : "cache",

@@ -1,4 +1,4 @@
-# Install script for directory: /home/sudokill/emul/assembler
+# Install script for directory: /home/sudokill/8Bit_Emulator/assembler
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

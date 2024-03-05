@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sudokill/emul
+CMAKE_SOURCE_DIR = /home/sudokill/8Bit_Emulator
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sudokill/emul/build
+CMAKE_BINARY_DIR = /home/sudokill/8Bit_Emulator/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/sudokill/emul/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/sudokill/emul/build/CMakeFiles /home/sudokill/emul/build/assembler//CMakeFiles/progress.marks
-	cd /home/sudokill/emul/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 assembler/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sudokill/emul/build/CMakeFiles 0
+	cd /home/sudokill/8Bit_Emulator/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/sudokill/8Bit_Emulator/build/CMakeFiles /home/sudokill/8Bit_Emulator/build/assembler//CMakeFiles/progress.marks
+	cd /home/sudokill/8Bit_Emulator/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 assembler/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sudokill/8Bit_Emulator/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/sudokill/emul/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 assembler/clean
+	cd /home/sudokill/8Bit_Emulator/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 assembler/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,22 +103,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/sudokill/emul/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 assembler/preinstall
+	cd /home/sudokill/8Bit_Emulator/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 assembler/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/sudokill/emul/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 assembler/preinstall
+	cd /home/sudokill/8Bit_Emulator/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 assembler/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/sudokill/emul/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/sudokill/8Bit_Emulator/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 assembler/CMakeFiles/assemble.dir/rule:
-	cd /home/sudokill/emul/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 assembler/CMakeFiles/assemble.dir/rule
+	cd /home/sudokill/8Bit_Emulator/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 assembler/CMakeFiles/assemble.dir/rule
 .PHONY : assembler/CMakeFiles/assemble.dir/rule
 
 # Convenience name for target.
@@ -127,7 +127,7 @@ assemble: assembler/CMakeFiles/assemble.dir/rule
 
 # fast build rule for target.
 assemble/fast:
-	cd /home/sudokill/emul/build && $(MAKE) $(MAKESILENT) -f assembler/CMakeFiles/assemble.dir/build.make assembler/CMakeFiles/assemble.dir/build
+	cd /home/sudokill/8Bit_Emulator/build && $(MAKE) $(MAKESILENT) -f assembler/CMakeFiles/assemble.dir/build.make assembler/CMakeFiles/assemble.dir/build
 .PHONY : assemble/fast
 
 assemble.o: assemble.cpp.o
@@ -135,7 +135,7 @@ assemble.o: assemble.cpp.o
 
 # target to build an object file
 assemble.cpp.o:
-	cd /home/sudokill/emul/build && $(MAKE) $(MAKESILENT) -f assembler/CMakeFiles/assemble.dir/build.make assembler/CMakeFiles/assemble.dir/assemble.cpp.o
+	cd /home/sudokill/8Bit_Emulator/build && $(MAKE) $(MAKESILENT) -f assembler/CMakeFiles/assemble.dir/build.make assembler/CMakeFiles/assemble.dir/assemble.cpp.o
 .PHONY : assemble.cpp.o
 
 assemble.i: assemble.cpp.i
@@ -143,7 +143,7 @@ assemble.i: assemble.cpp.i
 
 # target to preprocess a source file
 assemble.cpp.i:
-	cd /home/sudokill/emul/build && $(MAKE) $(MAKESILENT) -f assembler/CMakeFiles/assemble.dir/build.make assembler/CMakeFiles/assemble.dir/assemble.cpp.i
+	cd /home/sudokill/8Bit_Emulator/build && $(MAKE) $(MAKESILENT) -f assembler/CMakeFiles/assemble.dir/build.make assembler/CMakeFiles/assemble.dir/assemble.cpp.i
 .PHONY : assemble.cpp.i
 
 assemble.s: assemble.cpp.s
@@ -151,7 +151,7 @@ assemble.s: assemble.cpp.s
 
 # target to generate assembly for a file
 assemble.cpp.s:
-	cd /home/sudokill/emul/build && $(MAKE) $(MAKESILENT) -f assembler/CMakeFiles/assemble.dir/build.make assembler/CMakeFiles/assemble.dir/assemble.cpp.s
+	cd /home/sudokill/8Bit_Emulator/build && $(MAKE) $(MAKESILENT) -f assembler/CMakeFiles/assemble.dir/build.make assembler/CMakeFiles/assemble.dir/assemble.cpp.s
 .PHONY : assemble.cpp.s
 
 # Help Target
@@ -177,6 +177,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/sudokill/emul/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/sudokill/8Bit_Emulator/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
