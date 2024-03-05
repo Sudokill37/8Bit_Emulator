@@ -22,8 +22,8 @@ The Simple 8-Bit CPU supports a simple and compact instruction set designed to p
 - **AND**: Perform bitwise AND operation
 - **ANDI**: Perform bitwise AND operation with immediate value
 - **NOT**: Perform bitwise NOT operation
-- **LSR**: Logical shift right
 - **LSL**: Logical shift left
+- **LSR**: Logical shift right
 - **BRF**: Branch if selected flag is set
 - **BNF**: Branch if selected flag is not set
 - **JMP**: Unconditional Jump
@@ -52,7 +52,7 @@ The Simple 8-Bit CPU includes a set of registers for storing temporary data and 
 - **PC**: Program counter register (R-type only).
 - **PCU**: Program counter upper register (R-type only).
 - **SP**: Stack pointer register (R-type only).
-- **SR**: Status register (R-type only). Flags: Zero, Sign, Overflow, Parity, Reset. (Format: ZSVPRXXX)
+- **SR**: Status register (R-type only). Flags: Zero, Sign, Overflow, Carry, Parity, Reset. (Format: ZSVPRXXX)
 - **AR**: Address register (R-type only).
 - **ARU**: Address register upper register (R-type only).
 

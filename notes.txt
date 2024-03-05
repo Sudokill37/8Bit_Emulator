@@ -31,6 +31,10 @@ R instructions
 |4 bit opcode|      |4 bit op1|    |4 bit op2|       |4 bit op3|
     1111               1111           1111              1111
 
+shift instructions
+
+    1111               1111           1111              1 111    
+
 J instructions (offset not used by the BEQA instruction instead the address contained in the AR register is used)
 
 |4 bit opcode|       |12 bit offset|
