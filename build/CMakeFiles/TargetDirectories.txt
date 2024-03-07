@@ -1,6 +1,0 @@
-/home/sudokill/8Bit_Emulator/build/CMakeFiles/emul.dir
-/home/sudokill/8Bit_Emulator/build/CMakeFiles/edit_cache.dir
-/home/sudokill/8Bit_Emulator/build/CMakeFiles/rebuild_cache.dir
-/home/sudokill/8Bit_Emulator/build/assembler/CMakeFiles/assemble.dir
-/home/sudokill/8Bit_Emulator/build/assembler/CMakeFiles/edit_cache.dir
-/home/sudokill/8Bit_Emulator/build/assembler/CMakeFiles/rebuild_cache.dir
