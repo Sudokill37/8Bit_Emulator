@@ -3,9 +3,13 @@
 #include <bitset>
 #include "cpu.hpp"
 
+
+
 int cycles = 0;
 
-memory::memory() : stack(mem), ins(mem+256), data(mem+4352){
+memory::memory() : rstVector((uint16_t*)mem), stack(mem+2), ins(mem+258), data(mem+4354){
+
+    *rstVector = 0x0000;
 
     for (int i = 0; i < 256; ++i) {
         stack[i] = 0;
@@ -19,10 +23,13 @@ memory::memory() : stack(mem), ins(mem+256), data(mem+4352){
 
 }
 registers::registers(){
+
     for (int i = 0; i < 10; i++) {
         reg[i] = 0;
     }
 }
+
+
 
 uint16_t fetchIns(registers& cpuReg, memory& cpuMem){
     
@@ -59,13 +66,21 @@ void setIns(uint16_t addr, uint16_t *insAr, int16_t size, memory &cpuMem)
 }
 
 void execute(registers& cpuReg, memory& cpuMem){
+    if((cpuReg.reg[R_SR]>>2)&0b1){
+        cpuReg.reg[R_PC] = 0;
+        cpuReg.reg[R_PCU] = 0;
+        cpuReg.reg[R_SP] = 0;
+        cpuReg.reg[R_SR] = 0;
+        cpuReg.reg[R_AR] = 0;
+        cpuReg.reg[R_ARU] = 0;
+    }
     uint16_t ins = fetchIns(cpuReg, cpuMem);
     uint8_t opcode = ins >> 12;
 
     switch (opcode)
     {
     case 0b0000:    //NOP
-        std::cout << "NOP" << std::endl;
+        std::cout << "NOP: " << (int)(cpuReg.reg[R_PC] | cpuReg.reg[R_PCU]<<8)-1 << std::endl;
         break;
     case 0b0001:    //ADD
         ADD(ins, cpuReg, cpuMem);
@@ -136,8 +151,8 @@ void ADD(uint16_t ins, registers& cpuReg, memory& cpuMem){
     uint8_t val2 = cpuReg.reg[srcReg2];
     uint8_t result = val1 + val2;
 
-    uint8_t parity = (((result)&1)^((result>>1)&1)^((result>>2)&1)^((result>>3)&1)^((result>>4)&1)^((result>>5)&1)^((result>>6)&1)^((result>>7)&1))<<4;
-    uint8_t overflow = (int)(((!(val1>>7))&&(!(val2>>7))&&((result>>7)))|(((val1>>7))&&((val2>>7))&&(!(result>>7)))) << 5;
+    uint8_t parity = calculateParity(result)<<4;
+    uint8_t overflow = ((val1 ^ result) & (val2 ^ result)) >> 2;
     uint8_t sign = (result >> 1)&0x40;
     uint8_t zero = (result == 0) << 7;
     cpuReg.reg[R_SR] = parity | overflow | sign | zero;
@@ -155,8 +170,8 @@ void ADDI(uint16_t ins, registers& cpuReg, memory& cpuMem){
     uint8_t val2 = ins & 0xff;                              //load the immediate value from the instruction
     uint8_t result = val1 + val2;
    
-    uint8_t parity = (((result)&1)^((result>>1)&1)^((result>>2)&1)^((result>>3)&1)^((result>>4)&1)^((result>>5)&1)^((result>>6)&1)^((result>>7)&1))<<4;
-    uint8_t overflow = (int)(((!(val1>>7))&&(!(val2>>7))&&((result>>7)))|(((val1>>7))&&((val2>>7))&&(!(result>>7)))) << 5;
+    uint8_t parity = calculateParity(result)<<4;
+    uint8_t overflow = ((val1 ^ result) & (val2 ^ result)) >> 2;
     uint8_t sign = (result >> 1)&0x40;
     uint8_t zero = (result == 0) << 7;
    
@@ -173,11 +188,11 @@ void SUB(uint16_t ins, registers& cpuReg, memory& cpuMem){
     uint8_t srcReg2 = (uint8_t)(ins >> 0)&0x0f;
     
     uint8_t val1 = cpuReg.reg[srcReg1];
-    uint8_t val2 = cpuReg.reg[srcReg2];
-    uint8_t result = val1 + (~val2 + 0x01);
+    uint8_t val2 = ~cpuReg.reg[srcReg2] + 1;
+    uint8_t result = val1 + val2;
 
-    uint8_t parity = (((result)&1)^((result>>1)&1)^((result>>2)&1)^((result>>3)&1)^((result>>4)&1)^((result>>5)&1)^((result>>6)&1)^((result>>7)&1))<<4;
-    uint8_t overflow = (int)(((!(val1>>7))&&(!(val2>>7))&&((result>>7)))|(((val1>>7))&&((val2>>7))&&(!(result>>7)))) << 5;
+    uint8_t parity = calculateParity(result)<<4;
+    uint8_t overflow = ((val1 ^ result) & (val2 ^ result)) >> 2;
     uint8_t sign = (result >> 1)&0x40;
     uint8_t zero = (result == 0) << 7;
     cpuReg.reg[R_SR] = parity | overflow | sign | zero;
@@ -192,11 +207,11 @@ void SUBI(uint16_t ins, registers& cpuReg, memory& cpuMem){
     uint8_t srcReg  = (uint8_t)(ins >> 8)  & 0x03;
    
     uint8_t val1 = cpuReg.reg[srcReg];
-    uint8_t val2 = ins & 0xff;                              //load the immediate value from the instruction
-    uint8_t result = val1 + (~val2 + 0x01);
+    uint8_t val2 = ~(ins & 0xff) + 1;                              //load the immediate value from the instruction
+    uint8_t result = val1 + val2;
    
-    uint8_t parity = (((result)&1)^((result>>1)&1)^((result>>2)&1)^((result>>3)&1)^((result>>4)&1)^((result>>5)&1)^((result>>6)&1)^((result>>7)&1))<<4;
-    uint8_t overflow = (int)(((!(val1>>7))&&(!(val2>>7))&&((result>>7)))|(((val1>>7))&&((val2>>7))&&(!(result>>7)))) << 5;
+    uint8_t parity = calculateParity(result)<<4;
+    uint8_t overflow = ((val1 ^ result) & (val2 ^ result)) >> 2;
     uint8_t sign = (result >> 1)&0x40;
     uint8_t zero = (result == 0) << 7;
    
@@ -217,7 +232,7 @@ void AND(uint16_t ins, registers& cpuReg, memory& cpuMem){
         uint8_t val2 = cpuReg.reg[srcReg2];                       //load the immediate value from the instruction
         uint8_t result = val1 & val2;
 
-        uint8_t parity = (((result)&1)^((result>>1)&1)^((result>>2)&1)^((result>>3)&1)^((result>>4)&1)^((result>>5)&1)^((result>>6)&1)^((result>>7)&1))<<4;
+        uint8_t parity = calculateParity(result)<<4;
         
         uint8_t sign = (result >> 1)&0x40;
         uint8_t zero = (result == 0) << 7;
@@ -237,7 +252,7 @@ void ANDI(uint16_t ins, registers& cpuReg, memory& cpuMem){
         uint8_t result = val1 & val2;
 
 
-        uint8_t parity = (((result)&1)^((result>>1)&1)^((result>>2)&1)^((result>>3)&1)^((result>>4)&1)^((result>>5)&1)^((result>>6)&1)^((result>>7)&1))<<4;
+        uint8_t parity = calculateParity(result)<<4;
         
         uint8_t sign = (result >> 1)&0x40;
         uint8_t zero = (result == 0) << 7;
@@ -260,8 +275,8 @@ void NOT(uint16_t ins, registers& cpuReg, memory& cpuMem){
     uint8_t val1 = cpuReg.reg[srcReg1]; 
     uint8_t result = ~val1;
 
-    uint8_t parity = (((result)&1)^((result>>1)&1)^((result>>2)&1)^((result>>3)&1)^((result>>4)&1)^((result>>5)&1)^((result>>6)&1)^((result>>7)&1))<<4;
-       
+    uint8_t parity = calculateParity(result)<<4;
+
     uint8_t sign = (result >> 1)&0x40;
     uint8_t zero = (result == 0) << 7;
 
@@ -287,7 +302,7 @@ void LSL(uint16_t ins, registers& cpuReg, memory& cpuMem){
         result = val1 << cpuReg.reg[srcReg2];
     }
 
-    uint8_t parity = (((result)&1)^((result>>1)&1)^((result>>2)&1)^((result>>3)&1)^((result>>4)&1)^((result>>5)&1)^((result>>6)&1)^((result>>7)&1))<<4;
+    uint8_t parity = calculateParity(result)<<4;
        
     uint8_t sign = (result >> 1)&0x40;
     uint8_t zero = (result == 0) << 7;
@@ -314,7 +329,7 @@ void LSR(uint16_t ins, registers& cpuReg, memory& cpuMem){
         result = val1 >> cpuReg.reg[srcReg2];
     }
 
-    uint8_t parity = (((result)&1)^((result>>1)&1)^((result>>2)&1)^((result>>3)&1)^((result>>4)&1)^((result>>5)&1)^((result>>6)&1)^((result>>7)&1))<<4;
+    uint8_t parity = calculateParity(result)<<4;
        
     uint8_t sign = (result >> 1)&0x40;
     uint8_t zero = (result == 0) << 7;
@@ -325,16 +340,14 @@ void LSR(uint16_t ins, registers& cpuReg, memory& cpuMem){
 }
 
 void BRF(uint16_t ins, registers& cpuReg, memory& cpuMem){
-    //check condition
-
-    bool mode = (ins >> 11);
-    uint8_t flag = (ins >> 10)&3;
+    bool mode = (ins >> 11)&1;
+    uint8_t flag = (ins >> 9 )&3;
     bool condition = (cpuReg.reg[R_SR] >> (flag+4))&1;
     uint16_t offset = ins&0x01ff;
     int relativeAddress;
     
     if(offset>>8){
-        relativeAddress = (~(offset-1))&0x01ff;
+        relativeAddress = -((~(offset-1))&0x01ff);
     }else{
         relativeAddress = ((offset))&0x01ff;
     }
@@ -345,30 +358,25 @@ void BRF(uint16_t ins, registers& cpuReg, memory& cpuMem){
             cpuReg.reg[R_PC] = absoluteAddress&0x00ff;
             cpuReg.reg[R_PCU] = (absoluteAddress>>8)&0x00ff;
         }else{
-            cpuReg.reg[R_PC] = cpuReg.reg[R_AR];
-            cpuReg.reg[R_PCU] = cpuReg.reg[R_ARU];
+            uint16_t addr = ((uint16_t)cpuReg.reg[R_ARU] << 8) | cpuReg.reg[R_AR];
+            cpuReg.reg[R_PC] = (addr/2)&0xff;
+            cpuReg.reg[R_PCU] = ((addr/2)>>8)&0xff;
         }
-        
     }
 
     cpuReg.reg[R_SR]  =  0;
-
-    //1111 1111 1111 1111  
-    //recieve address
-    //jump to address if condition met
-    //reset flags
 }
 
 void BNF(uint16_t ins, registers& cpuReg, memory& cpuMem){
     
-    bool mode = (ins >> 11);
+    bool mode = (ins >> 11)&1;
     uint8_t flag = (ins >> 10)&3;
     bool condition = (cpuReg.reg[R_SR] >> (flag+4))&1;
     uint16_t offset = ins&0x01ff;
     int relativeAddress;
     
     if(offset>>8){
-        relativeAddress = (~(offset-1))&0x01ff;
+        relativeAddress = -((~(offset-1))&0x01ff);
     }else{
         relativeAddress = ((offset))&0x01ff;
     }
@@ -379,49 +387,88 @@ void BNF(uint16_t ins, registers& cpuReg, memory& cpuMem){
             cpuReg.reg[R_PC] = absoluteAddress&0x00ff;
             cpuReg.reg[R_PCU] = (absoluteAddress>>8)&0x00ff;
         }else{
-            cpuReg.reg[R_PC] = cpuReg.reg[R_AR];
-            cpuReg.reg[R_PCU] = cpuReg.reg[R_ARU];
+            uint16_t addr = ((uint16_t)cpuReg.reg[R_ARU] << 8) | cpuReg.reg[R_AR];
+            cpuReg.reg[R_PC] = (addr/2)&0xff;
+            cpuReg.reg[R_PCU] = ((addr/2)>>8)&0xff;
         }
-        
     }
 
     cpuReg.reg[R_SR]  =  0;
 }
 
 void JMP(u_int16_t ins, registers& cpuReg, memory& cpuMem){
-    bool mode = (ins >> 11);
-    uint16_t offset = ins&0x07ff;
+    std::cout << "JMP ";
+    bool mode = (ins >> 11)&1;
+    //std::cout << std::bitset<16>(ins) << std::endl;
 
+    uint16_t offset = ins&0x07ff;
+    
     int relativeAddress;
 
     if(offset>>10){
-        relativeAddress = (~(offset-1))&0x07ff;
+        relativeAddress = -((~(offset-1))&0x07ff);
     }else{
         relativeAddress = ((offset))&0x07ff;
     }
-
     uint16_t absoluteAddress = ((cpuReg.reg[R_PCU] << 8) | cpuReg.reg[R_PC])+relativeAddress;
-
+    
     if(mode){
         cpuReg.reg[R_PC] = absoluteAddress&0x00ff;
         cpuReg.reg[R_PCU] = (absoluteAddress>>8)&0x00ff;
+
     }else{
-        cpuReg.reg[R_PC] = cpuReg.reg[R_AR];
-        cpuReg.reg[R_PCU] = cpuReg.reg[R_ARU];
+        uint16_t addr = ((uint16_t)cpuReg.reg[R_ARU] << 8) | cpuReg.reg[R_AR];
+        cpuReg.reg[R_PC] = (addr/2)&0xff;
+        cpuReg.reg[R_PCU] = ((addr/2)>>8)&0xff;
     }
 }
 
 void LB(uint16_t ins, registers& cpuReg, memory& cpuMem){
+    uint8_t isImmediate = (ins >> 11)&0x01;
+    uint8_t srcReg = (ins>>4)&0x07;
+    uint8_t destReg  = (ins >> 8)&0x07;
+    uint8_t data;
+
+    uint16_t address = cpuReg.reg[srcReg] | (cpuReg.reg[srcReg+1]<<8);
+    
+    if(isImmediate){
+        address = fetchIns(cpuReg, cpuMem);
+    }
+
+    data = cpuMem.mem[address];
+
+    cpuReg.reg[destReg] = data;
 
 }
 
 void SB(uint16_t ins, registers& cpuReg, memory& cpuMem){
+    
+    uint8_t isImmediate = (ins >> 11)&0x01;
+    uint8_t srcReg = (ins>>4)&0x07;
+    uint8_t destReg  = (ins >> 8)&0x07;
+    uint8_t data;
+
+    uint16_t address = cpuReg.reg[srcReg] | (cpuReg.reg[srcReg+1]<<8);
+    
+    if(isImmediate){
+        address = fetchIns(cpuReg, cpuMem);
+    }
+
+    data = cpuReg.reg[srcReg];
+
+    cpuMem.mem[address] = data;
 
 }
 
 void RST(uint16_t ins, registers& cpuReg, memory& cpuMem){
     cpuReg.reg[R_SR] |= 4;
+    std::cout << "RST: " << (int)(cpuReg.reg[R_PC] | cpuReg.reg[R_PCU]<<8)-1 << std::endl;
 }
 
-
+uint8_t calculateParity(uint8_t value) {
+    value ^= value >> 4; // Reduce to 4 bits
+    value ^= value >> 2; // Reduce to 2 bits
+    value ^= value >> 1; // Reduce to 1 bit
+    return value & 1;    // Get the parity
+}
 

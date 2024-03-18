@@ -40,13 +40,13 @@ int main(){
         0x0000,
         0x0000,
         0x0000,
+        0xf000, 
         0x0000,
-        0x8000,
-        0xf000,
-        0xf000,
-        0xf000,
-        0xf000,
-        0xf000
+        0x0000,
+        0x0000,
+        0x0000,
+        0x0000,
+        0x0000
     };
 
     for(int i = 0; i < 250; i++){
@@ -54,31 +54,24 @@ int main(){
         cpuMem.data[2*i+1] = data[i]>>8;
     }
 
-    setIns(0,program,10,cpuMem);
-    setIns(5,0x1000,cpuMem);
-    setIns(6,0x8000,cpuMem);
+    setIns(0, program, 10, cpuMem);
+   
     
     //std::cout << (int)(cpuMem.data[0]|cpuMem.data[1]<<8) << std::endl;
-
 
     cpuReg.reg[0b0000] = 0x00;
     cpuReg.reg[0b0001] = 0b11110111;
     cpuReg.reg[0b0010] = 0b01111111;
 
-    
+    cpuReg.reg[R_AR] = 0b11111110;
+    cpuReg.reg[R_ARU] = 0b00111111;
 
-    // for(int i = 0; i < 8; i++){
-    //         if(HALT_FLAG == 1){ // check if program halted
-    //             break;
-    //         }
-    //         execute(cpuReg, cpuMem);
-    // }
-    
+    for(int i = 0; i < 64; i++){    
+            execute(cpuReg, cpuMem);
+    }
     for (int a = 0; a < 250; a++){
-        
         int num = (int)(cpuMem.data[2*a] | (cpuMem.data[2*a+1]<<8));
-        std::cout << num << std::endl;    
-    
+        //std::cout << num << std::endl;    
     }
     return 0;
 }

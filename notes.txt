@@ -45,22 +45,38 @@ J instructions (offset not used by the BEQA instruction instead the address cont
 
 Registers (PC and AR registers are 16 bit registers, the upper 8 bits are accessed using the base index + 1)
   |Reg|   |index|
-    W       0000    (I type compatible)
-    X       0001    (I type compatible)
-    Y       0010    (I type compatible)
-    Z       0011    (I type compatible)
-    PC      0100    (R type only)
-    PCU     0101    (PC upper 8 bits)
-    SP      0110    (R type only)
-    SR      0111    (R type only, Read only)
-    AR      1000    (R type only) 
-    ARU     1001    (AR upper 8 bits)
+    W       0000    W and X can be accessed as a 16 bit A register.
+    X       0001    
+    Y       0010    Y and Z can be accessed as a 16 bit B register.
+    Z       0011    
+    
+    PC      0100    
+    PCU     0101    
+    SP      0110    
+    SR      0111    
+    
+    A and B can be used with memory and jump instructions but not logical and arithmetic instructions.
+
+    A 0000
+
+    B 0010
 
 
     status register
 
     8bits (2 flags not used)
-    Z S V P H X X X
+    Z S V C P R X X
     1 1 1 1 1 1 1 1
-
+zero sign overflow carry parity reset  X X
 (flags are set based on the output of an AL instruction)
+
+xxxx Q000 0000 0000
+ C    8     0    9
+
+ op   I/R   
+xxxx   1    
+R-type        op1    op2     op3 
+              111   1111     1111
+
+I-type        op1    op2    unused => second 2 bytes store immediate
+              111   1111     xxxx              1111 1111 1111 1111

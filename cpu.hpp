@@ -25,6 +25,7 @@ struct registers{
 };
 struct memory{
     uint8_t mem[65536];
+    uint16_t* rstVector;
     uint8_t* stack; //stack, nuff said.
     uint8_t* ins;  //program data goes here
     uint8_t* data;//[61184]; //peripherals will be in here.
@@ -54,5 +55,5 @@ void LB(uint16_t ins, registers& cpuReg, memory& cpuMem);
 void SB(uint16_t ins, registers& cpuReg, memory& cpuMem);
 void RST(uint16_t ins, registers& cpuReg, memory& cpuMem);
 
-
+uint8_t calculateParity(uint8_t);
 
